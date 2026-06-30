@@ -9,6 +9,7 @@ SELECT
 FROM ayment_transactions    -- Replace with your actual table name
 WHERE Status = 'declined'
 AND operationDT >= NOW() - INTERVAL 15 MINUTE  
-GROUP BY user_identifier, Gateway, Type,
+GROUP BY user_identifier, Gateway, Type
+    -- FRAUD TRIGGER CRITERIA:
 HAVING falied_attempts_count >= 10   
 ORDER BY falied_attempts_count DESC;
